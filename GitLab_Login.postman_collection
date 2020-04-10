@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "397d20c2-b413-4a90-a45e-caa2afbceebf",
+		"name": "Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GitLab_Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3cc253ce-9dc1-4b90-8020-a7b1f606f3c6",
+						"exec": [
+							"//Parse HTML and get the CSRF token\r",
+							"var responseHTML = cheerio(pm.response.text());\r",
+							"var auth_token=responseHTML.find('[name=\"authenticity_token\"]').val();\r",
+							"console.log(auth_token);\r",
+							"\r",
+							"pm.globals.set(\"authenticity_token\", auth_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/users/sign_in",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Final_Github_Signin_Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "46adb4a4-d912-453a-899e-8dbe1e1a068b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "Origin",
+						"value": "https://gitlab.com"
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-User",
+						"value": "?1"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "navigate"
+					},
+					{
+						"key": "Referer",
+						"value": "https://gitlab.com/users/sign_in"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "Cookie",
+						"value": "experimentation_subject_id=ImJjY2I2ZWYzLTM4ZjMtNDA0Ny1iNjUyLTNlY2Q1YmViNGNhYyI^%^3D--2d520e3949abcf412feb1004d90fcbbec9a17651; _sp_ses.6b85=*; sidebar_collapsed=false; event_filter=all; _gitlab_session=9bfbc135adba044b7f31dddce4aa06df; _sp_id.6b85=3c8dce69-bbe4-4ee8-a3da-76691a60af51.1581028096.1.1581033371.1581028096.cb5dc082-d002-46aa-83da-ec2eae5266c4",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "utf8",
+							"value": "✓",
+							"type": "text"
+						},
+						{
+							"key": "authenticity_token",
+							"value": "{{authenticity_token}}",
+							"type": "text"
+						},
+						{
+							"key": "user[login]",
+							"value": "XXXXXXXXXXXXXXXX- Replace with Your UserID",
+							"type": "text"
+						},
+						{
+							"key": "user[password]",
+							"value": "XXXXXXXXXXXXXXXX- Replace with Your Password",
+							"type": "text"
+						},
+						{
+							"key": "user[remember_me]",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://gitlab.com/groups/tlconsulting/",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"groups",
+						"tlconsulting",
+						""
+					]
+				},
+				"description": "Generated from a curl request: \ncurl \\\"https://gitlab.com/users/sign_in\\\" -H \\\"Connection: keep-alive\\\" -H \\\"Cache-Control: max-age=0\\\" -H \\\"Origin: https://gitlab.com\\\" -H \\\"Upgrade-Insecure-Requests: 1\\\" -H \\\"Content-Type: application/x-www-form-urlencoded\\\" -H \\\"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36\\\" -H \\\"Sec-Fetch-User: ?1\\\" -H \\\"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\\\" -H \\\"Sec-Fetch-Site: same-origin\\\" -H \\\"Sec-Fetch-Mode: navigate\\\" -H \\\"Referer: https://gitlab.com/users/sign_in\\\" -H \\\"Accept-Encoding: gzip, deflate, br\\\" -H \\\"Accept-Language: en-GB,en-US;q=0.9,en;q=0.8\\\" -H \\\"Cookie: experimentation_subject_id=ImJjY2I2ZWYzLTM4ZjMtNDA0Ny1iNjUyLTNlY2Q1YmViNGNhYyI^%^3D--2d520e3949abcf412feb1004d90fcbbec9a17651; _sp_ses.6b85=*; sidebar_collapsed=false; event_filter=all; _gitlab_session=9bfbc135adba044b7f31dddce4aa06df; _sp_id.6b85=3c8dce69-bbe4-4ee8-a3da-76691a60af51.1581028096.1.1581033371.1581028096.cb5dc082-d002-46aa-83da-ec2eae5266c4\\\" --data \\\"utf8=^%^E2^%^9C^%^93^&authenticity_token=y7BHKwGILC^%^2Fal^%^2FnrAiBJqoFeqqmUspCBgKP^%^2FibpvdSyz8GyUDGLAo1cNpFMmXXOmSCkvKrb7KfdQo^%^2Bw6OnE8iQ^%^3D^%^3D^&user^%^5Blogin^%^5D=Your_UserID^&user^%^5Bpassword^%^5D=Your_Password^&user^%^5Bremember_me^%^5D=0\\\" --compressed"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
